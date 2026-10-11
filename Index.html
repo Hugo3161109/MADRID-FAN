@@ -1,1 +1,297 @@
 
+HTML
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07152f">
+<title>MADRID FAN | Pasión Blanca</title>
+<style>
+:root{--navy:#07152f;--blue:#123c80;--gold:#e6bd63;--white:#fff;--bg:#f1f4f9}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#14213b;font-family:Arial,sans-serif}
+header{background:linear-gradient(135deg,#061127,#143e83);color:white;padding:22px 18px 26px;border-bottom:3px solid var(--gold)}
+.brand{font-size:27px;font-weight:900;letter-spacing:1.5px}
+.brand span{color:var(--gold)}
+header p{margin:8px 0 0;color:#dce6fa}
+nav{display:flex;overflow-x:auto;background:#fff;position:sticky;top:0;z-index:5;box-shadow:0 3px 12px #00112b16}
+nav button{border:0;background:white;padding:15px 16px;font-weight:bold;color:#33435d;white-space:nowrap}
+nav button.active{color:#16458e;border-bottom:3px solid var(--gold)}
+main{max-width:900px;margin:auto;padding:16px}
+.page{display:none}.page.active{display:block}
+.hero{padding:28px 22px;border-radius:20px;background:linear-gradient(145deg,#07152f,#17488d);color:white;position:relative;overflow:hidden}
+.hero:after{content:"HALA MADRID";position:absolute;right:-20px;bottom:0;font-size:45px;font-weight:900;color:#ffffff0d;white-space:nowrap}
+.eyebrow{color:var(--gold);font-size:12px;letter-spacing:2px;font-weight:bold}
+h1{font-size:30px;line-height:1.1;margin:12px 0}
+h2{font-size:23px;margin:20px 0 12px}
+h3{margin:8px 0}
+p{line-height:1.5}
+.muted{color:#6d7890;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{background:white;border-radius:15px;padding:16px;box-shadow:0 4px 15px #102b5010;min-width:0}
+.tile{min-height:130px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(145deg,#0a1c3c,#1c4a8e);color:white}
+.symbol{font-size:32px}
+button,.btn{cursor:pointer}
+.action{border:0;border-radius:10px;padding:12px 15px;background:var(--gold);color:#17213a;font-weight:bold}
+.secondary{background:#e9eef7;color:#17396e}
+.full{width:100%;margin-top:10px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #d3dbea;border-radius:9px;margin:6px 0 12px;background:white;font:inherit}
+label{font-size:13px;font-weight:bold}
+.wallpaper{width:100%;max-width:350px;aspect-ratio:9/16;margin:14px auto;background:linear-gradient(150deg,#06112a,#174b91);border:5px solid white;border-radius:20px;box-shadow:0 5px 20px #0002;display:flex;align-items:center;justify-content:center;text-align:center;color:white;padding:20px;position:relative;overflow:hidden}
+.wallpaper:before{content:"";position:absolute;width:240px;height:240px;border:2px solid #e6bd6380;border-radius:50%}
+.wallpaper-content{position:relative;z-index:1}
+.wallpaper .big{font-size:34px;font-weight:900;line-height:1.1}
+.wallpaper .small{color:var(--gold);letter-spacing:3px;margin-top:18px}
+.player{border-left:4px solid var(--gold)}
+.tag{font-size:11px;background:#edf2fa;color:#224b87;padding:5px 8px;border-radius:20px;display:inline-block}
+a{color:#17488d}
+footer{text-align:center;color:#778196;padding:28px 15px;font-size:12px}
+.empty{text-align:center;padding:28px;color:#718098}
+.notice{font-size:12px;color:#778196;line-height:1.5}
+@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{padding:38px}.hero h1{font-size:42px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">⚪ MADRID <span>FAN</span></div>
+  <p>Una pasión que nunca termina.</p>
+</header>
+
+<nav id="nav">
+  <button class="active" data-page="inicio">🏠 Inicio</button>
+  <button data-page="fondos">🖼️ Fondos</button>
+  <button data-page="champions">🏆 Champions</button>
+  <button data-page="leyendas">⭐ Leyendas</button>
+  <button data-page="noticias">📰 Noticias</button>
+  <button data-page="favoritos">❤️ Favoritos</button>
+  <button data-page="ajustes">⚙️ Ajustes</button>
+</nav>
+
+<main>
+<section class="page active" id="inicio">
+  <div class="hero">
+    <div class="eyebrow">BIENVENIDO A LA FAMILIA MADRIDISTA</div>
+    <h1>El orgullo de vestir de blanco.</h1>
+    <p>Tu espacio para celebrar la historia, la emoción y la grandeza del Real Madrid.</p>
+    <button class="action" onclick="showPage('fondos')">Crear mi fondo →</button>
+  </div>
+  <h2>Explora MADRID FAN</h2>
+  <div class="grid">
+    <div class="card tile"><div class="symbol">🖼️</div><div><h3>Tus fondos</h3><p>Diseña un fondo para tu móvil.</p><button class="action" onclick="showPage('fondos')">Crear</button></div></div>
+    <div class="card tile"><div class="symbol">🏆</div><div><h3>Noche europea</h3><p>Revive la emoción de la Champions.</p><button class="action" onclick="showPage('champions')">Explorar</button></div></div>
+    <div class="card tile"><div class="symbol">⭐</div><div><h3>Grandes leyendas</h3><p>Figuras que hicieron historia.</p><button class="action" onclick="showPage('leyendas')">Conocer</button></div></div>
+    <div class="card tile"><div class="symbol">📰</div><div><h3>Actualidad</h3><p>Consulta las fuentes oficiales.</p><button class="action" onclick="showPage('noticias')">Leer</button></div></div>
+  </div>
+  <p class="notice">MADRID FAN es un proyecto independiente de aficionados y no está afiliado oficialmente al Real Madrid CF ni a la UEFA.</p>
+</section>
+
+<section class="page" id="fondos">
+  <h2>🖼️ Creador de fondos</h2>
+  <p class="muted">Personaliza tu diseño y guárdalo como imagen para tu móvil.</p>
+  <label for="frase">Tu frase</label>
+  <input id="frase" maxlength="65" value="HALA MADRID">
+  <label for="subfrase">Texto inferior</label>
+  <input id="subfrase" maxlength="45" value="HASTA EL FINAL">
+  <label for="color">Estilo</label>
+  <select id="color">
+    <option value="azul">Azul y dorado</option>
+    <option value="blanco">Blanco elegante</option>
+    <option value="noche">Noche europea</option>
+    <option value="negro">Negro y dorado</option>
+  </select>
+  <div class="wallpaper" id="preview">
+    <div class="wallpaper-content">
+      <div style="font-size:55px">⚽</div>
+      <div class="big" id="previewText">HALA MADRID</div>
+      <div class="small" id="previewSub">HASTA EL FINAL</div>
+      <p style="font-size:11px;letter-spacing:2px">MADRID FAN</p>
+    </div>
+  </div>
+  <button class="action full" id="download">⬇️ Descargar mi fondo</button>
+  <p class="notice">El diseño es original y usa símbolos genéricos; no incluye el escudo oficial del club.</p>
+</section>
+
+<section class="page" id="champions">
+  <div class="hero">
+    <div class="eyebrow">LA GRAN NOCHE EUROPEA</div>
+    <h1>Champions League 🏆</h1>
+    <p>La historia de las grandes noches del fútbol europeo.</p>
+  </div>
+  <h2>Una historia legendaria</h2>
+  <div class="grid">
+    <div class="card"><div class="symbol">🥇</div><h3>La primera era</h3><p>Las cinco primeras Copas de Europa consecutivas, entre 1956 y 1960, marcaron el inicio de una leyenda.</p></div>
+    <div class="card"><div class="symbol">🌟</div><h3>La Séptima</h3><p>En 1998, el Madrid volvió a conquistar Europa tras una larga espera.</p></div>
+    <div class="card"><div class="symbol">⚽</div><h3>La Décima</h3><p>En 2014, el gol de Sergio Ramos en el descuento abrió el camino hacia una final inolvidable.</p></div>
+    <div class="card"><div class="symbol">👑</div><h3>La Decimoquinta</h3><p>En 2024, el club conquistó su decimoquinta Copa de Europa.</p></div>
+  </div>
+  <h2>Información oficial</h2>
+  <div class="card"><p>Consulta resultados, calendario y noticias directamente en las fuentes oficiales.</p><a href="https://www.uefa.com/uefachampionsleague/" target="_blank" rel="noopener">Abrir UEFA Champions League ↗</a></div>
+</section>
+
+<section class="page" id="leyendas">
+  <h2>⭐ Estrellas del ayer</h2>
+  <p class="muted">Un homenaje a algunas figuras históricas del madridismo.</p>
+  <div class="grid">
+    <div class="card player"><span class="tag">LEYENDA</span><h3>Alfredo Di Stéfano</h3><p>Figura decisiva del equipo que conquistó las primeras cinco Copas de Europa.</p></div>
+    <div class="card player"><span class="tag">LEYENDA</span><h3>Ferenc Puskás</h3><p>Delantero histórico, recordado por su extraordinario talento goleador.</p></div>
+    <div class="card player"><span class="tag">LEYENDA</span><h3>Raúl González</h3><p>Símbolo de entrega y liderazgo durante una época memorable.</p></div>
+    <div class="card player"><span class="tag">LEYENDA</span><h3>Iker Casillas</h3><p>Portero emblemático y protagonista de grandes noches europeas.</p></div>
+    <div class="card player"><span class="tag">LEYENDA</span><h3>Cristiano Ronaldo</h3><p>Máximo goleador histórico del club, decisivo en numerosos títulos.</p></div>
+    <div class="card player"><span class="tag">LEYENDA</span><h3>Zinedine Zidane</h3><p>Genio del balón y autor de una inolvidable volea en la final de 2002.</p></div>
+  </div>
+  <p class="notice">Los nombres se utilizan con fines informativos. Esta versión no incorpora fotografías licenciadas.</p>
+</section>
+
+<section class="page" id="noticias">
+  <h2>📰 Noticias del Real Madrid</h2>
+  <p>Accede a noticias actualizadas desde fuentes oficiales y evita información desactualizada.</p>
+  <div class="card">
+    <h3>Real Madrid CF</h3>
+    <p>Comunicados, entrenamientos, entrevistas y actualidad del primer equipo.</p>
+    <a href="https://www.realmadrid.com/es-ES/noticias" target="_blank" rel="noopener">Leer noticias oficiales ↗</a>
+  </div>
+  <div class="card" style="margin-top:12px">
+    <h3>Primer equipo de fútbol</h3>
+    <p>Plantilla, información deportiva y contenidos del club.</p>
+    <a href="https://www.realmadrid.com/es-ES/futbol/primer-equipo" target="_blank" rel="noopener">Ver primer equipo ↗</a>
+  </div>
+  <div class="card" style="margin-top:12px">
+    <h3>UEFA Champions League</h3>
+    <p>Noticias y resultados de la competición europea.</p>
+    <a href="https://www.uefa.com/uefachampionsleague/" target="_blank" rel="noopener">Consultar UEFA ↗</a>
+  </div>
+  <p class="notice">Esta primera versión enlaza a las fuentes; todavía no descarga noticias automáticamente dentro de la app.</p>
+</section>
+
+<section class="page" id="favoritos">
+  <h2>❤️ Mis favoritos</h2>
+  <p class="muted">Guarda aquí tus leyendas y secciones preferidas.</p>
+  <div class="grid" id="favGrid"></div>
+  <p id="emptyFav" class="empty">Todavía no tienes favoritos.</p>
+  <h2>Agregar un favorito</h2>
+  <label for="favName">Nombre o sección</label>
+  <input id="favName" maxlength="60" placeholder="Ej. Cristiano Ronaldo">
+  <button class="action full" id="addFav">❤️ Agregar a favoritos</button>
+</section>
+
+<section class="page" id="ajustes">
+  <h2>⚙️ Ajustes</h2>
+  <div class="card">
+    <h3>🔔 Notificaciones</h3>
+    <p>Activa las notificaciones del navegador cuando estén disponibles. Esta opción no crea por sí sola alertas de partidos.</p>
+    <button class="action" id="notify">Activar notificaciones</button>
+    <p class="muted" id="notifyStatus">Notificaciones desactivadas.</p>
+  </div>
+  <div class="card" style="margin-top:12px">
+    <h3>💾 Datos locales</h3>
+    <p>Los favoritos se guardan en este navegador en este dispositivo.</p>
+    <button class="action secondary" id="clearFav">Borrar todos los favoritos</button>
+  </div>
+  <div class="card" style="margin-top:12px">
+    <h3>Acerca de MADRID FAN</h3>
+    <p>Proyecto independiente para aficionados. Sin afiliación oficial al Real Madrid CF o a la UEFA.</p>
+    <p class="muted">Versión inicial 1.0 · Aplicación web adaptable a móvil.</p>
+  </div>
+</section>
+</main>
+
+<footer>MADRID FAN · Hecho por y para aficionados · Hala Madrid 🤍</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='favoritos') renderFav();
+}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+
+const themes={
+  azul:['linear-gradient(150deg,#06112a,#174b91)','#e6bd63','#ffffff'],
+  blanco:['linear-gradient(150deg,#ffffff,#e4eaf4)','#17488d','#10213d'],
+  noche:['linear-gradient(150deg,#090b20,#3c2468)','#f2d37d','#ffffff'],
+  negro:['linear-gradient(150deg,#050505,#252525)','#e6bd63','#ffffff']
+};
+
+function updatePreview(){
+  $('previewText').textContent=$('frase').value||'HALA MADRID';
+  $('previewSub').textContent=$('subfrase').value||'MADRID FAN';
+  const t=themes[$('color').value];
+  $('preview').style.background=t[0];
+  $('previewText').style.color=t[2];
+  $('previewSub').style.color=t[1];
+}
+['frase','subfrase','color'].forEach(id=>$(id).addEventListener('input',updatePreview));
+
+$('download').addEventListener('click',()=>{
+  const canvas=document.createElement('canvas');
+  canvas.width=900;canvas.height=1600;
+  const c=canvas.getContext('2d');
+  const t=themes[$('color').value];
+  const grad=c.createLinearGradient(0,0,900,1600);
+  if($('color').value==='blanco'){grad.addColorStop(0,'#fff');grad.addColorStop(1,'#dce5f2')}
+  else if($('color').value==='noche'){grad.addColorStop(0,'#090b20');grad.addColorStop(1,'#3c2468')}
+  else if($('color').value==='negro'){grad.addColorStop(0,'#050505');grad.addColorStop(1,'#252525')}
+  else{grad.addColorStop(0,'#06112a');grad.addColorStop(1,'#174b91')}
+  c.fillStyle=grad;c.fillRect(0,0,900,1600);
+  c.strokeStyle=t[1];c.lineWidth=5;c.beginPath();c.arc(450,620,260,0,Math.PI*2);c.stroke();
+  c.textAlign='center';c.fillStyle=t[2];c.font='bold 100px Arial';
+  c.fillText('⚽',450,520);
+  let phrase=$('frase').value||'HALA MADRID';
+  c.font='bold 76px Arial';
+  const words=phrase.split(' ');let lines=[],line='';
+  words.forEach(w=>{let test=line?line+' '+w:w;if(c.measureText(test).width>740){lines.push(line);line=w}else line=test});
+  if(line)lines.push(line);
+  let y=680-(lines.length-1)*48;
+  lines.forEach(l=>{c.fillText(l,450,y);y+=100});
+  c.fillStyle=t[1];c.font='bold 35px Arial';
+  c.fillText($('subfrase').value||'HASTA EL FINAL',450,y+70);
+  c.font='bold 30px Arial';c.fillText('MADRID FAN',450,1390);
+  c.font='22px Arial';c.fillText('PASIÓN BLANCA',450,1440);
+  canvas.toBlob(blob=>{
+    if(!blob){alert('No se pudo generar la imagen. Inténtalo otra vez.');return}
+    const url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download='madrid-fan-fondo.png';a.click();
+    setTimeout(()=>URL.revokeObjectURL(url),2000);
+  },'image/png');
+});
+
+function getFav(){
+  try{return JSON.parse(localStorage.getItem('madridFanFav')||'[]')}catch(e){return []}
+}
+function saveFav(list){localStorage.setItem('madridFanFav',JSON.stringify(list))}
+function renderFav(){
+  const list=getFav(),grid=$('favGrid');
+  grid.innerHTML='';
+  $('emptyFav').style.display=list.length?'none':'block';
+  list.forEach((name,i)=>{
+    const card=document.createElement('div');card.className='card';
+    const title=document.createElement('h3');title.textContent='❤️ '+name;
+    const del=document.createElement('button');del.className='action secondary full';del.textContent='Quitar';
+    del.addEventListener('click',()=>{const l=getFav();l.splice(i,1);saveFav(l);renderFav()});
+    card.append(title,del);grid.appendChild(card);
+  });
+}
+$('addFav').addEventListener('click',()=>{
+  const name=$('favName').value.trim();if(!name){alert('Escribe un nombre primero.');return}
+  const list=getFav();if(list.includes(name)){alert('Ya está en favoritos.');return}
+  list.push(name);saveFav(list);$('favName').value='';renderFav();
+});
+$('clearFav').addEventListener('click',()=>{
+  if(confirm('¿Seguro que quieres borrar todos los favoritos?')){saveFav([]);renderFav()}
+});
+$('notify').addEventListener('click',async()=>{
+  if(!('Notification'in window)){$('notifyStatus').textContent='Este navegador no admite notificaciones.';return}
+  try{
+    const result=await Notification.requestPermission();
+    $('notifyStatus').textContent=result==='granted'?'Permiso concedido. Las alertas de partidos requieren una función adicional.':result==='denied'?'Permiso denegado. Puedes cambiarlo en los ajustes del navegador.':'No se concedió permiso.';
+  }catch(e){$('notifyStatus').textContent='No fue posible solicitar el permiso en este entorno.'}
+});
+updatePreview();renderFav();
+</script>
+</body>
+</html>
