@@ -48,6 +48,81 @@ footer{text-align:center;color:#778196;padding:28px 15px;font-size:12px}
 .empty{text-align:center;padding:28px;color:#718098}
 .notice{font-size:12px;color:#778196;line-height:1.5}
 @media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{padding:38px}.hero h1{font-size:42px}}
+
+/* Galería del creador de fondos */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 12px 0 20px;
+}
+
+.gallery-option {
+  border: 2px solid #d3dbea;
+  border-radius: 12px;
+  background: white;
+  color: #14213b;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.gallery-option.selected {
+  border-color: #e6bd63;
+  box-shadow: 0 0 0 2px #e6bd6340;
+}
+
+.gallery-art {
+  height: 105px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  font-size: 42px;
+  background: linear-gradient(145deg, #07152f, #17488d);
+  color: white;
+}
+
+.upload-photo {
+  display: block;
+  padding: 14px;
+  border: 2px dashed #9baac3;
+  border-radius: 12px;
+  text-align: center;
+  background: white;
+  margin: 12px 0;
+}
+
+.wallpaper-photo {
+  display: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.78;
+}
+
+.wallpaper.has-photo {
+  background: #07152f;
+}
+
+.wallpaper.has-photo::before {
+  z-index: 1;
+  border-color: #e6bd63b0;
+}
+
+.wallpaper-content {
+  z-index: 2;
+  text-shadow: 0 2px 8px #000;
+}
+
+@media (max-width: 380px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 </head>
 <body>
@@ -84,13 +159,66 @@ footer{text-align:center;color:#778196;padding:28px 15px;font-size:12px}
   <p class="notice">MADRID FAN es un proyecto independiente de aficionados y no está afiliado oficialmente al Real Madrid CF ni a la UEFA.</p>
 </section>
 
+<
 <section class="page" id="fondos">
-  <h2>🖼️ Creador de fondos</h2>
-  <p class="muted">Personaliza tu diseño y guárdalo como imagen para tu móvil.</p>
+  <h2>🖼️ Creador de fondos MADRID FAN</h2>
+
+  <p class="muted">
+    Elige un diseño o carga una fotografía de tu teléfono.
+  </p>
+
+  <h3>1. Galería madridista</h3>
+
+  <div class="gallery-grid" id="gallery">
+    <button class="gallery-option selected" data-preset="escudo">
+      <div class="gallery-art">👑</div>
+      Escudo estilizado
+    </button>
+
+    <button class="gallery-option" data-preset="jugador">
+      <div class="gallery-art">⚽</div>
+      Jugador blanco
+    </button>
+
+    <button class="gallery-option" data-preset="leyenda">
+      <div class="gallery-art">⭐</div>
+      Leyenda dorada
+    </button>
+
+    <button class="gallery-option" data-preset="estadio">
+      <div class="gallery-art">🏟️</div>
+      Noche europea
+    </button>
+  </div>
+
+  <h3>2. Añade tu fotografía</h3>
+
+  <label class="upload-photo" for="photoUpload">
+    📷 Elegir una foto del teléfono
+    <input
+      id="photoUpload"
+      type="file"
+      accept="image/*"
+      style="margin-top:12px"
+    >
+  </label>
+
+  <p class="muted" id="photoStatus">
+    Puedes cargar una foto del escudo o de tu jugador favorito.
+  </p>
+
+  <button class="action secondary full" id="removePhoto">
+    Quitar fotografía
+  </button>
+
+  <h3>3. Personaliza tu fondo</h3>
+
   <label for="frase">Tu frase</label>
   <input id="frase" maxlength="65" value="HALA MADRID">
+
   <label for="subfrase">Texto inferior</label>
   <input id="subfrase" maxlength="45" value="HASTA EL FINAL">
+
   <label for="color">Estilo</label>
   <select id="color">
     <option value="azul">Azul y dorado</option>
@@ -98,16 +226,35 @@ footer{text-align:center;color:#778196;padding:28px 15px;font-size:12px}
     <option value="noche">Noche europea</option>
     <option value="negro">Negro y dorado</option>
   </select>
+
+  <h3>4. Vista previa</h3>
+
   <div class="wallpaper" id="preview">
+    <img
+      id="previewPhoto"
+      class="wallpaper-photo"
+      alt="Fotografía seleccionada para el fondo"
+    >
+
     <div class="wallpaper-content">
-      <div style="font-size:55px">⚽</div>
+      <div style="font-size:55px" id="previewSymbol">👑</div>
       <div class="big" id="previewText">HALA MADRID</div>
       <div class="small" id="previewSub">HASTA EL FINAL</div>
-      <p style="font-size:11px;letter-spacing:2px">MADRID FAN</p>
+      <p style="font-size:11px;letter-spacing:2px">
+        MADRID FAN
+      </p>
     </div>
   </div>
-  <button class="action full" id="download">⬇️ Descargar mi fondo</button>
-  <p class="notice">El diseño es original y usa símbolos genéricos; no incluye el escudo oficial del club.</p>
+
+  <button class="action full" id="download">
+    ⬇️ Descargar mi fondo en PNG
+  </button>
+
+  <p class="notice">
+    Los diseños de la galería son ilustraciones originales.
+    Las fotografías que selecciones deben ser imágenes que
+    tengas permiso para utilizar.
+  </p>
 </section>
 
 <section class="page" id="champions">
@@ -206,56 +353,10 @@ function showPage(id){
   if(id==='favoritos') renderFav();
 }
 document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
-
-const themes={
-  azul:['linear-gradient(150deg,#06112a,#174b91)','#e6bd63','#ffffff'],
+azul:['linear-gradient(150deg,#06112a,#174b91)','#e6bd63','#ffffff'],
   blanco:['linear-gradient(150deg,#ffffff,#e4eaf4)','#17488d','#10213d'],
   noche:['linear-gradient(150deg,#090b20,#3c2468)','#f2d37d','#ffffff'],
-  negro:['linear-gradient(150deg,#050505,#252525)','#e6bd63','#ffffff']
-};
-
-function updatePreview(){
-  $('previewText').textContent=$('frase').value||'HALA MADRID';
-  $('previewSub').textContent=$('subfrase').value||'MADRID FAN';
-  const t=themes[$('color').value];
-  $('preview').style.background=t[0];
-  $('previewText').style.color=t[2];
-  $('previewSub').style.color=t[1];
-}
-['frase','subfrase','color'].forEach(id=>$(id).addEventListener('input',updatePreview));
-
-$('download').addEventListener('click',()=>{
-  const canvas=document.createElement('canvas');
-  canvas.width=900;canvas.height=1600;
-  const c=canvas.getContext('2d');
-  const t=themes[$('color').value];
-  const grad=c.createLinearGradient(0,0,900,1600);
-  if($('color').value==='blanco'){grad.addColorStop(0,'#fff');grad.addColorStop(1,'#dce5f2')}
-  else if($('color').value==='noche'){grad.addColorStop(0,'#090b20');grad.addColorStop(1,'#3c2468')}
-  else if($('color').value==='negro'){grad.addColorStop(0,'#050505');grad.addColorStop(1,'#252525')}
-  else{grad.addColorStop(0,'#06112a');grad.addColorStop(1,'#174b91')}
-  c.fillStyle=grad;c.fillRect(0,0,900,1600);
-  c.strokeStyle=t[1];c.lineWidth=5;c.beginPath();c.arc(450,620,260,0,Math.PI*2);c.stroke();
-  c.textAlign='center';c.fillStyle=t[2];c.font='bold 100px Arial';
-  c.fillText('⚽',450,520);
-  let phrase=$('frase').value||'HALA MADRID';
-  c.font='bold 76px Arial';
-  const words=phrase.split(' ');let lines=[],line='';
-  words.forEach(w=>{let test=line?line+' '+w:w;if(c.measureText(test).width>740){lines.push(line);line=w}else line=test});
-  if(line)lines.push(line);
-  let y=680-(lines.length-1)*48;
-  lines.forEach(l=>{c.fillText(l,450,y);y+=100});
-  c.fillStyle=t[1];c.font='bold 35px Arial';
-  c.fillText($('subfrase').value||'HASTA EL FINAL',450,y+70);
-  c.font='bold 30px Arial';c.fillText('MADRID FAN',450,1390);
-  c.font='22px Arial';c.fillText('PASIÓN BLANCA',450,1440);
-  canvas.toBlob(blob=>{
-    if(!blob){alert('No se pudo generar la imagen. Inténtalo otra vez.');return}
-    const url=URL.createObjectURL(blob),a=document.createElement('a');
-    a.href=url;a.download='madrid-fan-fondo.png';a.click();
-    setTimeout(()=>URL.revokeObjectURL(url),2000);
-  },'image/png');
-});
+  negro:['linear-gradi
 
 function getFav(){
   try{return JSON.parse(localStorage.getItem('madridFanFav')||'[]')}catch(e){return []}
